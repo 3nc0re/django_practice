@@ -1,0 +1,56 @@
+{% extends 'universal.html' %}
+{% load static %}
+
+{% block title %}
+    Add Medicine
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Add Medicine</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="producer">Producer:</label>
+                <select class="form-control" id="producer" name="producer">
+                    {% for producer in producers %}
+                    <option value="{{ producer.name }}">{{ producer.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="expiration_date">Expiration Date:</label>
+                <input type="date" class="form-control" id="expiration_date" name="expiration_date" required>
+            </div>
+            <div class="form-group">
+                <label for="substance_class">Substance Class:</label>
+                <select class="form-control" id="substance_class" name="substance_class">
+                    {% for substance in substances %}
+                    <option value="{{ substance.type_name }}">{{ substance.type_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="is_generic">Is Generic:</label>
+                <input type="checkbox" class="form-control" id="is_generic" name="is_generic">
+            </div>
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="number" class="form-control" id="price" name="price" required>
+            </div>
+            <div class="form-group">
+                <label for="form">Form:</label>
+                <input type="text" class="form-control" id="form" name="form" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add</button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/add_medicine.css' %}">
+{% endblock %}

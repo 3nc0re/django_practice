@@ -1,0 +1,42 @@
+{% extends 'universal.html' %}
+{% load static %}
+
+{% block title %}
+    Display Medicine for Organization
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Medicine for Organization</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Producer</th>
+                    <th>Expiration Date</th>
+                    <th>Substance Class</th>
+                    <th>Is Generic</th>
+                    <th>Price</th>
+                    <th>Form</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for medicine in medicines %}
+                <tr>
+                    <td>{{ medicine.name }}</td>
+                    <td>{{ medicine.producer }}</td>
+                    <td>{{ medicine.expiration_date }}</td>
+                    <td>{{ medicine.substance_class }}</td>
+                    <td>{{ medicine.is_generic }}</td>
+                    <td>{{ medicine.price }}</td>
+                    <td>{{ medicine.form }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/display_medicine_for_organization.css' %}">
+{% endblock %}
